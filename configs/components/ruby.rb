@@ -1,7 +1,7 @@
 component "ruby" do |pkg, settings, platform|
-  pkg.version "2.1.9"
-  pkg.md5sum "d9d2109d3827789344cc3aceb8e1d697"
-  pkg.url "https://cache.ruby-lang.org/pub/ruby/2.1/ruby-#{pkg.get_version}.tar.gz"
+  pkg.version "2.3.1"
+  pkg.md5sum "0d896c2e7fd54f722b399f407e48a4c6"
+  pkg.url "http://buildsources.delivery.puppetlabs.net/ruby-#{pkg.get_version}.tar.gz"
 
   if platform.is_windows?
     pkg.add_source "http://buildsources.delivery.puppetlabs.net/windows/elevate/elevate.exe", sum: "bd81807a5c13da32dd2a7157f66fa55d"
@@ -17,7 +17,6 @@ component "ruby" do |pkg, settings, platform|
   pkg.replaces 'pe-rubygem-gem2rpm'
 
   base = 'resources/patches/ruby'
-  pkg.apply_patch "#{base}/libyaml_cve-2014-9130.patch"
 
   # These are a pretty smelly hack, and they run the risk of letting tests
   # based on the generated data (that should otherwise fail) pass
@@ -199,7 +198,7 @@ component "ruby" do |pkg, settings, platform|
     # installing a compiled gem would not work without us shipping that gcc.
     # This tells the ruby setup that it can use the default system gcc rather
     # than our own.
-    target_dir = File.join(settings[:libdir], "ruby", "2.1.0", rbconfig_info[settings[:platform_triple]][:target_double])
+    target_dir = File.join(settings[:libdir], "ruby", "2.3.0", rbconfig_info[settings[:platform_triple]][:target_double])
     sed = "sed"
     sed = "gsed" if platform.is_solaris?
     sed = "/opt/freeware/bin/sed" if platform.is_aix?

@@ -86,8 +86,9 @@ project "puppet-agent" do |proj|
     proj.setting(:libdir, File.join(proj.prefix, "lib"))
   end
 
-  proj.setting(:gem_home, File.join(proj.libdir, "ruby", "gems", "2.1.0"))
+  proj.setting(:gem_home, File.join(proj.libdir, "ruby", "gems", "2.3.0"))
   proj.setting(:ruby_vendordir, File.join(proj.libdir, "ruby", "vendor_ruby"))
+  proj.setting(:retry_count, 1)
 
   # Cross-compiled Linux platforms
   platform_triple = "powerpc-linux-gnu" if platform.is_huaweios?
